@@ -4,6 +4,8 @@
 
 In this project, you'll create a blog platform using Angular, focusing on core topics such as Directives, Pipes, Forms, Services, and HTTP operations. Users can create, edit, and delete blog posts. Blog application will use json-server as a mock backend
 
+PS: feel free to adjust or add your own dataset like user accounts for logging in reasons
+
 ## Description
 
 - On the Blog Platform, users can:
