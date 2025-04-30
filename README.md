@@ -1,59 +1,46 @@
-# AngularBlogPlatform
+# Angular Blog Platform
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+## Introduction
 
-## Development server
+In this project, you'll create a blog platform using Angular, focusing on core topics such as Directives, Pipes, Forms, Services, and HTTP operations. Users can create, edit, and delete blog posts. Blog application will use json-server as a mock backend
 
-To start a local development server, run:
+## Description
 
-```bash
-ng serve
-```
+- On the Blog Platform, users can:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+  - Create a new blog post with a title, author, content, and date.
+  - View a list of all blog posts.
+  - Read the full content of a blog post.
+  - Edit existing posts.
+  - Delete posts.
+  - Admin dashboard
+    - Accessed only by admin or editors
+    - Display users
+    - Block users
 
-## Code scaffolding
+## Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Ensure you're familiar with:
 
-```bash
-ng generate component component-name
-```
+  - Structural Directives.
+  - Creation of custom directives.
+  - Use of built-in pipes and creation of custom pipes.
+  - Angular Forms: Template-Driven and Reactive Forms.
+  - Form validation and custom validators.
+  - Understanding of Angular services and dependency injection.
+  - CRUD operations using the HttpClient module.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Ensure you have json-server installed. If not, install it globally:
+  - Install json-server globally: `npm install -g json-server`
+  - Run `json-server --watch db.json -p 4200` or `npm run server` to start the mock backend server
 
-```bash
-ng generate --help
-```
+## How do I ask for help or a review?
 
-## Building
+You should follow this GitHub workflow:
 
-To build the project run:
+1. Think of it as an open-source project
+2. Fork the repository
+3. Open a PR from your origin (forked repo) against this repository
+4. Leave a comment and tag me
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+`If you have any further questions. Post your question in PathWright Community tab.`
