@@ -1,4 +1,11 @@
-<div class="p-8 bg-yellow-400 text-black border-4 border-black">
-  <h1 class="text-4xl font-bold">HOME COMPONENT IS DISPLAYING!</h1>
-  <p>This is the home page content.</p>
+<div>
+  <app-h-hero [featuredPost]="featuredPost()"></app-h-hero>
 </div>
+
+<section class="py-12 px-4">
+  <div class="container mx-auto">
+    @for (post of posts(); track post.id) {
+      <app-h-post [post]="post"></app-h-post>
+    }
+  </div>
+</section>

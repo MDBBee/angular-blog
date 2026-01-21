@@ -1,0 +1,10 @@
+.hero {
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--muted)));
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+}

@@ -1,1 +1,58 @@
-<p>h-post works!</p>
+<article
+  class="flex w-full items-center gap-5 rounded-xl bg-background px-5 py-4 shadow-md"
+>
+  <!-- Thumbnail -->
+  <img
+    [src]="post().image"
+    alt="The Future of Technology"
+    class="h-20 w-28 flex-shrink-0 rounded-lg object-cover"
+  />
+
+  <!-- Content -->
+  <div class="flex flex-1 flex-col gap-2">
+    <h2 class="text-lg font-semibold leading-tight">
+      {{ post().title }}
+    </h2>
+
+    <!-- Meta -->
+    <div class="flex items-center gap-2 text-xs text-neutral-400">
+      <span class="flex items-center gap-1">
+        <span
+          class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-neutral-700 text-[10px] font-semibold text-white"
+        >
+          JS
+        </span>
+        Jane Smith
+      </span>
+      <span>•</span>
+      <span>Apr 30, 2024</span>
+    </div>
+
+    <!-- Description -->
+    <p class="max-w-3xl text-sm leading-relaxed text-neutral-300">
+      Join me for an adventure as we explore breathtaking mountain ranges, and
+      the peace that the great outdoors offer.
+    </p>
+  </div>
+
+  <!-- Actions -->
+  <div class="flex items-center gap-2">
+    <button
+      hlmBtn
+      variant="ghost"
+      size="sm"
+      class="text-neutral-300 hover:text-white"
+    >
+      + Move
+    </button>
+
+    <button
+      hlmBtn
+      variant="ghost"
+      size="icon"
+      class="text-neutral-400 hover:text-white"
+    >
+      →
+    </button>
+  </div>
+</article>

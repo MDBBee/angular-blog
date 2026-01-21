@@ -12,6 +12,7 @@ export type Post = {
   date: Date;
   Topic: string;
   content: string;
+  featured?: boolean;
   image?: string; // Optional field for images
   comments?: Comment[]; // Optional field for comments
 };
