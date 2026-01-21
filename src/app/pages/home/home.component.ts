@@ -14,7 +14,9 @@ import { HPostComponent } from '../../components/h-post/h-post.component';
 export class HomeComponent {
   postService = inject(PostService);
   posts = computed(() => this.postService.posts());
-  featuredPost = computed(() =>
-    this.postService.posts().find((p) => p.featured),
+  featuredPost = computed(
+    () =>
+      this.postService.posts().find((p) => p.featured) ||
+      this.postService.posts()[0],
   );
 }

@@ -1,7 +1,7 @@
 <section class="relative w-full overflow-hidden rounded-2xl shadow-lg">
   <!-- Background Image -->
   <img
-    [src]="featuredPost()?.image"
+    [src]="featuredPost().image"
     alt="Exploring the Mountains"
     class="absolute inset-0 h-full w-full object-cover"
   />
@@ -19,7 +19,7 @@
     <h1
       class="max-w-3xl text-3xl font-bold leading-tight md:text-4xl lg:text-5xl"
     >
-      {{ featuredPost()?.title }}
+      {{ featuredPost().title }}
     </h1>
 
     <!-- Meta -->
@@ -28,13 +28,13 @@
         <span
           class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-xs font-semibold"
         >
-          JD
+          {{ featuredPost().author | nameInitials }}
         </span>
-        <span>{{ featuredPost()?.author }}</span>
+        <span>{{ featuredPost().author }}</span>
       </div>
 
       <span class="opacity-60">•</span>
-      <span> {{ featuredPost()?.date?.toDateString() }} </span>
+      <span> {{ featuredPost().date.toDateString() }} </span>
       <span class="opacity-60">•</span>
       <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-medium">
         Travel
@@ -45,7 +45,7 @@
       <p
         class="mt-4 max-w-2xl text-sm leading-relaxed text-gray-200 md:text-base"
       >
-        {{ featuredPost()?.content?.slice(0, 150) }}...
+        {{ featuredPost().content.slice(0, 150) }}...
       </p>
 
       <!-- Action -->
