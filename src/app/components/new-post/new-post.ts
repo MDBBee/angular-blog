@@ -1,5 +1,10 @@
 import { Component, computed, inject } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
@@ -22,6 +27,7 @@ import { TitleCasePipe } from '@angular/common';
     HlmSelectImports,
     ReactiveFormsModule,
     TitleCasePipe,
+    ReactiveFormsModule,
   ],
   templateUrl: './new-post.html',
   styleUrl: './new-post.css',
@@ -29,4 +35,13 @@ import { TitleCasePipe } from '@angular/common';
 export class NewPost {
   postService = inject(PostService);
   topics = computed(() => this.postService.topics());
+
+  postForm = new FormGroup({
+    author: new FormControl(this.postService.user),
+    topic: new FormControl(''),
+    title: new FormControl(''),
+    content: new FormControl(''),
+    image: new FormControl(''),
+    featured: new FormControl(false),
+  });
 }

@@ -38,7 +38,7 @@ export class PostService {
         id: 'jkds76',
       },
       date: new Date('2025-01-03'),
-      Topic: 'Travel',
+      topic: 'Travel',
       content:
         'Traveling doesn’t have to be expensive. With careful planning, flexible dates, and smart choices, you can explore new countries without breaking the bank. This post covers budget-friendly accommodations, affordable transportation options, and tips for finding cheap flights while still enjoying authentic experiences.',
       image:
@@ -68,7 +68,7 @@ export class PostService {
         id: 'jkjhhj6767',
       },
       date: new Date('2025-01-06'),
-      Topic: 'Technology',
+      topic: 'Technology',
       content:
         'Technology plays a major role in how we work, communicate, and relax. From smartphones to artificial intelligence, modern tools have transformed daily routines. This article explores how technology improves productivity, changes social interactions, and presents new challenges around privacy and screen time.',
       image:
@@ -96,7 +96,7 @@ export class PostService {
         id: 'jkds76',
       },
       date: new Date('2025-01-09'),
-      Topic: 'Nutrition',
+      topic: 'Nutrition',
       content:
         'Good nutrition is the foundation of a healthy lifestyle. This post breaks down the basics of balanced eating, including macronutrients, portion control, and hydration. It also addresses common nutrition myths and offers practical advice for making healthier food choices every day.',
       image:
@@ -124,7 +124,7 @@ export class PostService {
         id: 'jkds76',
       },
       date: new Date('2025-01-12'),
-      Topic: 'Fitness',
+      topic: 'Fitness',
       content:
         'Staying active doesn’t require intense workouts or a gym membership. This article focuses on realistic fitness habits that fit into busy schedules, such as daily walks, short home workouts, and consistency over intensity. Small steps can lead to long-term results.',
       image:
@@ -152,7 +152,7 @@ export class PostService {
         id: 'jkds76',
       },
       date: new Date('2025-01-15'),
-      Topic: 'Lifestyle',
+      topic: 'Lifestyle',
       content:
         'Modern life often feels overwhelming, with constant demands on our time and attention. This post explores ways to create balance through better time management, setting boundaries, and prioritizing self-care. A balanced lifestyle leads to improved well-being and reduced stress.',
       image:
@@ -180,7 +180,7 @@ export class PostService {
         id: 'jkds76',
       },
       date: new Date('2025-01-18'),
-      Topic: 'General',
+      topic: 'General',
       content:
         'Sometimes it’s important to slow down and reflect on everyday experiences. This general post shares observations about work, relationships, and personal growth, encouraging readers to find meaning in small moments and appreciate the simple things in life.',
       image:
@@ -208,7 +208,7 @@ export class PostService {
         id: 'jkds76',
       },
       date: new Date('2025-01-21'),
-      Topic: 'Politics',
+      topic: 'Politics',
       content:
         'Politics often feels distant, but it affects many aspects of daily life, from education and healthcare to jobs and public services. This article explains why staying informed matters, how political decisions impact communities, and ways individuals can engage responsibly.',
       image:

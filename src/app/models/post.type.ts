@@ -13,7 +13,7 @@ export type Post = {
     id: string;
   };
   date: Date;
-  Topic: string;
+  topic: string;
   content: string;
   featured?: boolean;
   image?: string; // Optional field for images
