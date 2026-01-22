@@ -11,6 +11,6 @@ import { HPostComponent } from '../../components/h-post/h-post.component';
 export class MyPostsComponent {
   postService = inject(PostService);
   myPosts = computed(() =>
-    this.postService.fetchMyPosts(this.postService.user()),
+    this.postService.fetchMyPosts(this.postService.user().id),
   );
 }

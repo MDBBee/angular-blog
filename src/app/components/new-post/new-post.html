@@ -1,0 +1,81 @@
+<form class="border-2 rounded-xl p-4">
+  <div hlmFieldGroup>
+    <fieldset hlmFieldSet>
+      <legend hlmFieldLegend>New Post</legend>
+      <p hlmFieldDescription>Posts can be edited and deleted by the author</p>
+
+      <div hlmFieldGroup>
+        <div class="grid grid-cols-6 gap-2">
+          <div hlmField class="col-span-1">
+            <label hlmFieldLabel for="field-preview-name-on-card"
+              >Name of Author</label
+            >
+            <input
+              hlmInput
+              [value]="postService.user().name"
+              id="field-preview-name-on-card"
+              disabled
+            />
+          </div>
+          <div hlmField class="col-span-1">
+            <div hlmField>
+              <label hlmFieldLabel for="field-exp-month--trigger"
+                >Select Topic</label
+              >
+              <brn-select
+                id="field-exp-month"
+                class="inline-block"
+                placeholder="Topic..."
+              >
+                <hlm-select-trigger class="w-full">
+                  <hlm-select-value />
+                </hlm-select-trigger>
+                <hlm-select-content>
+                  @for (topic of topics(); track topic) {
+
+                  <hlm-option [value]="topic">
+                    {{topic | titlecase}}
+                  </hlm-option>
+                  }
+                </hlm-select-content>
+              </brn-select>
+            </div>
+          </div>
+          <div hlmField class="col-span-4">
+            <label hlmFieldLabel for="field-preview-name-on-card"
+              >Title of Post</label
+            >
+            <input hlmInput id="field-preview-name-on-card" type="text" />
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <hlm-field-separator />
+
+    <fieldset hlmFieldSet>
+      <div hlmFieldGroup>
+        <div hlmField>
+          <label hlmFieldLabel for="field-preview-comments"
+            >Content of post</label
+          >
+          <textarea
+            hlmTextarea
+            class="resize-none"
+            id="field-preview-comments"
+          ></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div hlmField class="col-span-1">
+      <label hlmFieldLabel for="field-preview-name-on-card"
+        >Publicly Hosted Image Url</label
+      >
+      <input hlmInput id="field-preview-name-on-card" type="text" />
+    </div>
+    <div hlmField orientation="horizontal">
+      <button hlmBtn>Submit</button>
+      <button hlmBtn variant="outline">Cancel</button>
+    </div>
+  </div>
+</form>

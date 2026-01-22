@@ -14,4 +14,5 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 })
 export class HPostComponent {
   post = input.required<Post>();
+  myPosts = input<boolean>(false);
 }

@@ -8,7 +8,7 @@
 
   <!-- Overlay -->
   <div
-    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"
+    class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/10"
   ></div>
 
   <!-- Content -->
@@ -28,7 +28,7 @@
         <span
           class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-xs font-semibold"
         >
-          {{ featuredPost().author | nameInitials }}
+          {{ featuredPost().author.name | nameInitials }}
         </span>
         <span>{{ featuredPost().author }}</span>
       </div>

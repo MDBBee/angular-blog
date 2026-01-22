@@ -1,11 +1,34 @@
 import { Injectable, signal } from '@angular/core';
 import { Post } from '../models/post.type';
 
+const users = [
+  {
+    name: 'Emily Carter',
+    id: 'jkds76',
+  },
+  {
+    name: 'John Smith',
+    id: 'jkjhhj6767',
+  },
+];
+const topics = [
+  'Travel',
+  'Technology',
+  'Nutrition',
+  'Fitness',
+  'Lifestyle',
+  'General',
+  'Politics',
+];
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
-  user = signal<string>('jkds76');
+  user = signal<{ name: string; id: string }>({
+    name: 'Emily Carter',
+    id: 'jkds76',
+  });
+  topics = signal<string[]>(topics);
   posts = signal<Post[]>([
     {
       id: '1',
