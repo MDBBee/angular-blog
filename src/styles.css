@@ -29,6 +29,7 @@
     "Segoe UI Symbol", "Noto Color Emoji";
 
   --radius: 0.625rem;
+  /* --background: oklch(100% 0.00011 271.152); */
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -41,7 +42,8 @@
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
   --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.491 0.27 292.581);
+  --accent: oklch(51.392% 0.0872 187.571);
+
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.929 0.013 255.508);
@@ -49,7 +51,7 @@
   --ring: oklch(0.704 0.04 256.788);
   --sidebar: oklch(0.984 0.003 247.858);
   --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary: oklch(81.858% 0.0377 188.101);
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
   --sidebar-accent: oklch(0.968 0.007 247.896);
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
@@ -60,7 +62,8 @@
 :root.dark {
   color-scheme: dark;
 
-  --background: oklch(0.129 0.042 264.695);
+  --background: oklch(8.65% 0.02921 255.706);
+  /* --background: oklch(0.129 0.042 264.695); */
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
   --card-foreground: oklch(0.984 0.003 247.858);
@@ -72,7 +75,8 @@
   --secondary-foreground: oklch(0.984 0.003 247.858);
   --muted: oklch(0.279 0.041 260.031);
   --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.511 0.096 186.391);
+  --accent: oklch(0.491 0.27 292.581);
+
   --accent-foreground: oklch(0.984 0.003 247.858);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
@@ -80,7 +84,7 @@
   --ring: oklch(0.551 0.027 264.364);
   --sidebar: oklch(0.208 0.042 265.755);
   --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(81.858% 0.0377 188.101);
   --sidebar-primary-foreground: oklch(0.208 0.042 265.755);
   --sidebar-accent: oklch(0.279 0.041 260.031);
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
@@ -94,5 +98,19 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .lb-shadow {
+    box-shadow: 3px 6px var(--ring);
+  }
+
+  .lb-shadow:active {
+    box-shadow: 1px 2px var(--ring);
+  }
+
+  .lb-shadow:focus {
+    box-shadow: 1px 2px var(--ring);
   }
 }

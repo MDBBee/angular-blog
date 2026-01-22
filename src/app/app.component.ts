@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ThemeService } from './services/theme';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 })
 export class AppComponent {
   title = 'angular-blog-platform';
+  themeServcie = inject(ThemeService);
+  theme = computed(() => this.themeServcie.currentTheme);
 }

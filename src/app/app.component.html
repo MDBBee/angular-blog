@@ -1,7 +1,14 @@
 <div class="flex flex-col">
   <app-header></app-header>
-  <div class="grid grid-cols-8">
-    <app-sidebar class="col-span-1 h-full border-r-2"></app-sidebar>
+  <div class="grid grid-cols-8 gap-2">
+    <div
+      class="col-span-1 border-r-2 border-t-2 rounded-xl h-[calc(100vh-72px)] bg-cover bg-center sticky top-18"
+      [style.background-image]="
+        theme() === 'dark' ? 'url(/assets/images/bg-2.jpg)' : ''
+      "
+    >
+      <app-sidebar></app-sidebar>
+    </div>
     <div class="col-span-7">
       <router-outlet></router-outlet>
     </div>

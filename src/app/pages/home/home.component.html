@@ -2,7 +2,7 @@
   <app-h-hero [featuredPost]="featuredPost()"></app-h-hero>
 </div>
 
-<section class="py-12 px-4">
+<section class="py-4 px-4">
   <div class="container mx-auto space-x-6">
     @for (post of posts(); track post.id) {
       <app-h-post [post]="post"></app-h-post>

@@ -1,6 +1,34 @@
-<div class="text-center border-r-2">
-  <div class="flex justify-center items-center gap-4">
-    <ng-icon class="text-accent" name="lucideHome" />
-    <span>Home</span>
+<div class="flex flex-col rounded h-full justify-between p-3">
+  <div class="flex flex-col gap-4">
+    <h1
+      class="flex justify-center items-center gap-4 bg-ring p-2 rounded mb-4 cursor-pointer focus:font-bold"
+      routerLink="/"
+    >
+      <ng-icon class="text-accent" name="lucideHome" />
+      <span>Home</span>
+    </h1>
+
+    <app-sb-button
+      routerLink="/create-new-posts"
+      btnName="New Post"
+      iconName="lucideHome"
+    />
+    <app-sb-button
+      routerLink="/my-posts"
+      btnName="My Posts"
+      iconName="lucideHome"
+    />
+    <app-sb-button
+      routerLink="/admin-dashboard"
+      btnName="Dashboard"
+      iconName="lucideHome"
+    />
   </div>
+  <button
+    hlmDropdownMenuItem
+    class="flex justify-center items-center gap-4 bg-ring p-2 rounded"
+  >
+    <span>Settings</span>
+    <hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
+  </button>
 </div>
