@@ -1,0 +1,33 @@
+.form-field-error-container {
+  min-height: 1.5rem;
+  margin-top: 0.25rem;
+  overflow: hidden;
+}
+
+.error-message {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
+  margin: 0;
+  padding: 0;
+}
+
+.error-message.visible {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 3rem;
+}
+
+/* Enhanced animation with bounce effect */
+/* .error-message-bounce {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  margin: 0;
+  padding: 0;
+}
+
+.error-message-bounce.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+} */

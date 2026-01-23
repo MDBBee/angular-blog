@@ -113,4 +113,41 @@
   .lb-shadow:focus {
     box-shadow: 1px 2px var(--ring);
   }
+
+  /* Custom Toast Background Colors */
+  :root {
+    --toast-success-bg: oklch(0.7 0.15 142); /* Green background */
+    --toast-error-bg: oklch(0.65 0.2 25); /* Red background */
+    --toast-warning-bg: oklch(0.75 0.15 85); /* Orange background */
+    --toast-info-bg: oklch(0.7 0.15 240); /* Blue background */
+  }
+
+  /* Custom Toast Background Colors using data attributes */
+  [data-sonner-toaster] [data-type="success"] {
+    background: linear-gradient(135deg, #00b894, #00cec9) !important;
+    border-color: #00a085 !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3) !important;
+  }
+
+  [data-sonner-toaster] [data-type="error"] {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52) !important;
+    border-color: #d63031 !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3) !important;
+  }
+
+  [data-sonner-toaster] [data-type="warning"] {
+    background: linear-gradient(135deg, #fdcb6e, #e17055) !important;
+    border-color: #d63031 !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(253, 203, 110, 0.3) !important;
+  }
+
+  [data-sonner-toaster] [data-type="info"] {
+    background: linear-gradient(135deg, #0984e3, #74b9ff) !important;
+    border-color: #0984e3 !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.3) !important;
+  }
 }

@@ -1,7 +1,7 @@
 <form
   class="border-2 rounded-xl p-4"
   [formGroup]="postForm"
-  (ngSubmit)="submitPost()"
+  (ngSubmit)="onSubmitPost()"
 >
   <div hlmFieldGroup>
     <fieldset hlmFieldSet>
@@ -18,8 +18,7 @@
               hlmInput
               id="field-preview-name-on-card"
               formControlName="author"
-              [value]="postService.user().name"
-              [disabled]="true"
+              readonly
             />
           </div>
           <div hlmField class="col-span-1">
@@ -45,11 +44,11 @@
                   }
                 </hlm-select-content>
               </brn-select>
-              <app-form-field-error
-                [control]="postForm.controls.topic"
-                label="Topic"
-              />
             </div>
+            <app-form-field-error
+              [control]="postForm.controls.topic"
+              label="Topic"
+            />
           </div>
           <div hlmField class="col-span-4">
             <label hlmFieldLabel for="field-title-of-post">Title of Post</label>
@@ -86,18 +85,56 @@
         label="Content"
       />
     </fieldset>
+    <div class="flex gap-4 items-start">
+      <div hlmField class="flex-1">
+        <label hlmFieldLabel for="field-post-image"
+          >Only Publicly Hosted Image Url for now</label
+        >
+        <input
+          hlmInput
+          id="field-post-image"
+          type="text"
+          formControlName="image"
+          placeholder="https://example.com/image.jpg"
+        />
+      </div>
 
-    <div hlmField class="col-span-1">
-      <label hlmFieldLabel for="field-post-image"
-        >Publicly Hosted Image Url</label
+      <!-- Image Preview -->
+      @if(postForm.get('image')?.value) {
+      <div
+        class="w-48 h-32 border-2 border-dashed border-muted-foreground/25 rounded-xl p-2 bg-muted/10"
       >
-      <input
-        hlmInput
-        id="field-post-image"
-        type="text"
-        formControlName="image"
-      />
+        <div class="relative w-full h-full bg-muted rounded-lg overflow-hidden">
+          <img
+            [src]="postForm.get('image')?.value"
+            [alt]="postForm.get('title')?.value || 'Post image preview'"
+            class="w-full h-full object-cover object-center"
+            [class.hidden]="imageError"
+            (error)="onImageError($event)"
+            (load)="onImageLoad($event)"
+          />
+          <!-- Loading placeholder -->
+          @if(!imageLoaded && !imageError) {
+          <div
+            class="absolute inset-0 flex items-center justify-center bg-muted animate-pulse"
+          >
+            <span class="text-muted-foreground text-xs">Loading...</span>
+          </div>
+          }
+
+          <!-- Error placeholder -->
+          @if(imageError) {
+          <div
+            class="absolute inset-0 flex items-center justify-center bg-destructive/10"
+          >
+            <span class="text-destructive text-xs">Failed to load image</span>
+          </div>
+          }
+        </div>
+      </div>
+      }
     </div>
+
     <div hlmField orientation="horizontal">
       <hlm-toaster />
       <button
@@ -113,7 +150,7 @@
         hlmBtn
         variant="outline"
         type="button"
-        (click)="failedToast()"
+        (click)="onResetForm()"
       >
         Reset
       </button>

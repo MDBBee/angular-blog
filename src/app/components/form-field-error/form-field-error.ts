@@ -11,4 +11,12 @@ import { HlmHint } from '@spartan-ng/helm/form-field';
 export class FormFieldError {
   @Input() control!: AbstractControl;
   @Input() label!: string;
+
+  get shouldShowError(): boolean {
+    return (
+      this.control?.invalid &&
+      !this.control?.disabled &&
+      (this.control?.dirty || this.control?.touched)
+    );
+  }
 }

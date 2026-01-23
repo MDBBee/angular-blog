@@ -14,7 +14,6 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 import { PostService } from '../../services/post.service';
 import { TitleCasePipe } from '@angular/common';
-import { Post, CreatePost } from '../../models/post.type';
 import { HlmToaster, HlmToasterImports } from '@spartan-ng/helm/sonner';
 import { toast } from 'ngx-sonner';
 import { Router } from '@angular/router';
@@ -45,18 +44,32 @@ export class NewPost {
   router = inject(Router);
   topics = computed(() => this.postService.topics());
 
+  imageLoaded = false;
+  imageError = false;
+
+  constructor() {
+    // Reset image states when URL changes
+    this.postForm.get('image')?.valueChanges.subscribe(() => {
+      this.imageLoaded = false;
+      this.imageError = false;
+    });
+  }
+
   postForm = new FormGroup({
-    author: new FormControl(this.postService.user().name, {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(2)],
-    }),
+    author: new FormControl(
+      { value: this.postService.user().name, disabled: true },
+      {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(2)],
+      },
+    ),
     topic: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3)],
     }),
     title: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(2)],
+      validators: [Validators.required, Validators.minLength(3)],
     }),
     content: new FormControl('', {
       nonNullable: true,
@@ -66,28 +79,57 @@ export class NewPost {
     featured: new FormControl(false),
   });
 
-  submitPost() {
+  onSubmitPost() {
+    if (this.postForm.invalid) {
+      Object.keys(this.postForm.controls).forEach((key) => {
+        const control = this.postForm.get(key);
+        if (control && !control.disabled) {
+          control.markAsTouched();
+        }
+      });
+
+      toast.error('Validation Failed', {
+        description: 'Please check the highlighted fields and try again.',
+        duration: 5000,
+      });
+
+      return;
+    }
+
     const date = new Date();
     const featured = false;
     const id = date.getTime().toString().slice(-5, -1);
 
-    toast('Post submitted successfully', {
-      description: `${date.toDateString()}`,
+    toast.success('Post Created Successfully!', {
+      description: `Published on ${date.toDateString()}`,
+      duration: 4000,
       action: {
-        label: 'Go To "Home Page"',
+        label: 'View Post',
         onClick: () => this.router.navigate(['/']),
       },
     });
   }
 
-  failedToast() {
+  onImageLoad(event: Event) {
+    this.imageLoaded = true;
+    this.imageError = false;
+  }
+
+  onImageError(event: Event) {
+    this.imageLoaded = false;
+    this.imageError = true;
+    const img = event.target as HTMLImageElement;
+    img.style.display = 'none';
+  }
+
+  onResetForm() {
     this.postForm.reset();
-    toast('Post has been Reset!', {
-      description: 'Sunday, December 03, 2023 at 9:00 AM',
-      action: {
-        label: 'Undo',
-        onClick: () => this.postForm.reset(),
-      },
+    this.imageLoaded = false;
+    this.imageError = false;
+
+    toast.warning('Form Reset', {
+      description: 'All fields have been cleared',
+      duration: 3000,
     });
   }
 }
