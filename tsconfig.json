@@ -54,6 +54,9 @@
       ],
       "@spartan-ng/helm/textarea": [
         "./libs/ui/textarea/src/index.ts"
+      ],
+      "@spartan-ng/helm/form-field": [
+        "./libs/ui/form-field/src/index.ts"
       ]
     }
   },

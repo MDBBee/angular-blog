@@ -45,6 +45,10 @@
                   }
                 </hlm-select-content>
               </brn-select>
+              <app-form-field-error
+                [control]="postForm.controls.topic"
+                label="Topic"
+              />
             </div>
           </div>
           <div hlmField class="col-span-4">
@@ -54,6 +58,10 @@
               id="field-title-of-post"
               type="text"
               formControlName="title"
+            />
+            <app-form-field-error
+              [control]="postForm.controls.title"
+              label="Title"
             />
           </div>
         </div>
@@ -73,6 +81,10 @@
           ></textarea>
         </div>
       </div>
+      <app-form-field-error
+        [control]="postForm.controls.content"
+        label="Content"
+      />
     </fieldset>
 
     <div hlmField class="col-span-1">

@@ -18,6 +18,7 @@ import { Post, CreatePost } from '../../models/post.type';
 import { HlmToaster, HlmToasterImports } from '@spartan-ng/helm/sonner';
 import { toast } from 'ngx-sonner';
 import { Router } from '@angular/router';
+import { FormFieldError } from '../form-field-error/form-field-error';
 
 @Component({
   selector: 'app-new-post',
@@ -34,6 +35,7 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     HlmToaster,
     HlmToasterImports,
+    FormFieldError,
   ],
   templateUrl: './new-post.html',
   styleUrl: './new-post.css',
