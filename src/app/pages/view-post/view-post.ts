@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.type';
 
@@ -36,6 +36,7 @@ import { EditPost } from '../../components/edit-post/edit-post';
 export class ViewPost implements OnInit {
   postService = inject(PostService);
   postId = signal<string>('');
+  router = inject(Router);
 
   // Use computed to reactively get the post from the service
   post = computed(() => {
@@ -69,6 +70,8 @@ export class ViewPost implements OnInit {
       author: {
         name: '',
         id: '',
+        role: 'User',
+        access: 'Allowed',
       },
       date: new Date(),
       topic: '',
@@ -105,6 +108,17 @@ export class ViewPost implements OnInit {
     this.postService.updatePost(updatedPost);
     toast.success('Comment submitted successfully!');
     this.comment.setValue('');
+  }
+
+  onDeletePost(postId: string) {
+    if (!postId) return;
+
+    this.postService.deletePost(postId);
+
+    this.router.navigate(['/']);
+    toast.success('Post Edited  Successfully!', {
+      duration: 4000,
+    });
   }
 }
 // Great write-up, but I think the writer should have included a comparison with travelling the world without a budget.

@@ -8,12 +8,17 @@ export type Comment = {
   comment: string;
 };
 
+export type Role = 'Admin' | 'User';
+export type AccessStatus = 'Blocked' | 'Allowed';
+
 export type Post = {
   id: string;
   title: string;
   author: {
     name: string;
     id: string;
+    role: Role;
+    access: AccessStatus;
   };
   date: Date;
   topic: string;

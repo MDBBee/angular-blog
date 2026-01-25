@@ -1,22 +1,30 @@
 import { Injectable, signal } from '@angular/core';
-import { CreatePost, Post } from '../models/post.type';
+import { AccessStatus, CreatePost, Post, Role } from '../models/post.type';
 
 const users = [
   {
     name: 'Emily Carter',
     id: 'jkds76',
+    role: 'User',
+    access: 'Allowed',
   },
   {
     name: 'John Smith',
     id: 'jkjhhj6767',
+    role: 'User',
+    access: 'Allowed',
   },
   {
     name: 'Alex James',
     id: 'hjhj34',
+    role: 'User',
+    access: 'Allowed',
   },
   {
     name: 'Maria Rodrigueze',
     id: '8921bnbnds',
+    role: 'User',
+    access: 'Allowed',
   },
 ];
 const topics = [
@@ -32,10 +40,14 @@ const topics = [
   providedIn: 'root',
 })
 export class PostService {
-  user = signal<{ name: string; id: string }>({
-    name: 'Emily Carter',
-    id: 'jkds76',
-  });
+  user = signal<{ name: string; id: string; role: Role; access: AccessStatus }>(
+    {
+      name: 'Emily Carter',
+      id: 'jkds76',
+      role: 'User',
+      access: 'Allowed',
+    },
+  );
   topics = signal<string[]>(topics);
   posts = signal<Post[]>([
     {
@@ -44,6 +56,8 @@ export class PostService {
       author: {
         name: 'Emily Carter',
         id: 'jkds76',
+        role: 'User',
+        access: 'Allowed',
       },
       date: new Date('2025-01-03'),
       topic: 'Travel',
@@ -80,6 +94,8 @@ export class PostService {
       author: {
         name: 'John Smith',
         id: 'jkjhhj6767',
+        role: 'User',
+        access: 'Allowed',
       },
       date: new Date('2025-01-06'),
       topic: 'Technology',
@@ -114,6 +130,8 @@ export class PostService {
       author: {
         name: 'Emily Carter',
         id: 'jkds76',
+        role: 'User',
+        access: 'Allowed',
       },
       date: new Date('2025-01-09'),
       topic: 'Nutrition',
@@ -148,6 +166,8 @@ export class PostService {
       author: {
         name: 'Emily Carter',
         id: 'jkds76',
+        role: 'User',
+        access: 'Allowed',
       },
       date: new Date('2025-01-12'),
       topic: 'Fitness',
@@ -182,6 +202,8 @@ export class PostService {
       author: {
         name: 'Emily Carter',
         id: 'jkds76',
+        role: 'User',
+        access: 'Allowed',
       },
       date: new Date('2025-01-15'),
       topic: 'Lifestyle',
@@ -216,6 +238,8 @@ export class PostService {
       author: {
         name: 'Emily Carter',
         id: 'jkds76',
+        role: 'User',
+        access: 'Allowed',
       },
       date: new Date('2025-01-18'),
       topic: 'General',
@@ -250,6 +274,8 @@ export class PostService {
       author: {
         name: 'Emily Carter',
         id: 'jkds76',
+        role: 'User',
+        access: 'Allowed',
       },
       date: new Date('2025-01-21'),
       topic: 'Politics',
@@ -313,6 +339,14 @@ export class PostService {
         }
         return post;
       }),
+    );
+  }
+
+  deletePost(postId: string) {
+    // console.log('UPDATE post', newPost);
+
+    this.posts.update((prevPosts) =>
+      prevPosts.filter((post) => post.id !== postId),
     );
   }
 }

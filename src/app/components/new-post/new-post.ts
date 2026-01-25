@@ -73,7 +73,7 @@ export class NewPost {
   postToEdit = input<Post>({
     id: '',
     title: '',
-    author: { name: '', id: '' },
+    author: { name: '', id: '', role: 'User', access: 'Allowed' },
     date: new Date(),
     topic: '',
     content: '',
