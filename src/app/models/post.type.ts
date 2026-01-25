@@ -30,4 +30,5 @@ export type Post = {
 //   featured?: boolean;
 //   image?: string; // Optional field for images
 // };
-export type CreatePost = Omit<Post, 'id' | 'author' | 'comments'>; // Exclude id, author, and
+export type CreatePost = Omit<Post, 'id' | 'author' | 'comments'>;
+export type UpdatePost = Omit<Post, 'id' | 'author' | 'comments'>;

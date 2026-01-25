@@ -294,7 +294,6 @@ export class PostService {
 
   createPost(post: CreatePost) {
     const author = this.user();
-    console.log('Creted');
 
     const date = new Date();
     const id = date.getTime().toString();
@@ -302,5 +301,18 @@ export class PostService {
     const newPost = { ...post, author, id };
     this.posts.update((prevPosts) => [newPost, ...prevPosts]);
     return;
+  }
+
+  updatePost(newPost: Post) {
+    // console.log('UPDATE post', newPost);
+
+    this.posts.update((prevPosts) =>
+      prevPosts.map((post) => {
+        if (post.id === newPost.id) {
+          return { ...post, ...newPost };
+        }
+        return post;
+      }),
+    );
   }
 }

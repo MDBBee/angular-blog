@@ -16,7 +16,7 @@
       <img
         [src]="post().image"
         [alt]="post().title"
-        class="h-80 w-120 rounded-xl float-right ml-4 border-2 border-ring object-cover"
+        class="h-80 w-120 rounded-xl float-right ml-4 object-cover ring-2 ring-ring ring-offset-2"
       />
       <p class="text-justify">{{post().content}}</p>
     </div>
@@ -27,13 +27,13 @@
 
     <div class="flex gap-4">
       <button
-        class="cursor-pointer active:scale-95 duration-200"
+        class="cursor-pointer active:scale-95 duration-200 font-bold"
         hlmBtn
         variant="destructive"
       >
         Delete Post
       </button>
-      <app-edit-post></app-edit-post>
+      <app-edit-post [postToEdit]="post()"></app-edit-post>
     </div>
     }
   </div>

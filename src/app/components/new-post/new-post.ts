@@ -1,4 +1,11 @@
-import { Component, computed, inject } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -18,7 +25,7 @@ import { HlmToaster, HlmToasterImports } from '@spartan-ng/helm/sonner';
 import { toast } from 'ngx-sonner';
 import { Router } from '@angular/router';
 import { FormFieldError } from '../form-field-error/form-field-error';
-import { CreatePost } from '../../models/post.type';
+import { CreatePost, Post, UpdatePost } from '../../models/post.type';
 
 @Component({
   selector: 'app-new-post',
@@ -44,7 +51,10 @@ export class NewPost {
   postService = inject(PostService);
   router = inject(Router);
   topics = computed(() => this.postService.topics());
-  authorName = this.postService.user().name;
+  authorName = computed(() => this.postService.user().name);
+
+  // Output event to notify parent component when post is submitted
+  postSubmitted = output<void>();
 
   imageLoaded = false;
   imageError = false;
@@ -57,9 +67,28 @@ export class NewPost {
     });
   }
 
+  // Should this component be used in the edit page
+  // For Debugging: postToedit was passed from view-post --> edit-post --> new-post 😊
+  isUpdate = input<boolean>(false);
+  postToEdit = input<Post>({
+    id: '',
+    title: '',
+    author: { name: '', id: '' },
+    date: new Date(),
+    topic: '',
+    content: '',
+    featured: false,
+    image: '',
+    comments: [],
+  });
+
+  updatePost = effect(() => {
+    this.postForm.patchValue(this.postToEdit());
+  });
+
   postForm = new FormGroup({
     author: new FormControl(
-      { value: this.postService.user().name, disabled: true },
+      { value: this.postService.user(), disabled: true },
       {
         nonNullable: true,
         validators: [Validators.required, Validators.minLength(2)],
@@ -69,7 +98,7 @@ export class NewPost {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3)],
     }),
-    title: new FormControl('', {
+    title: new FormControl(this.postToEdit().title, {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3)],
     }),
@@ -102,18 +131,31 @@ export class NewPost {
 
       return;
     }
+    // Run code if updating an existing post
+    if (this.isUpdate()) {
+      const post = {
+        ...this.postToEdit(),
+        ...(this.postForm.getRawValue() as Post),
+      };
+
+      this.postService.updatePost(post);
+
+      toast.success('Post Edited  Successfully!', {
+        duration: 4000,
+        action: {
+          label: 'View Post',
+          onClick: () => this.router.navigate([`/view-post/${post.id}`]),
+        },
+      });
+      this.postSubmitted.emit();
+      return;
+    }
+    // Run code if creating a new post
     const date = new Date();
     const newPost = {
       ...this.formValue,
       date,
     };
-
-    // console.log('tLs', date.toLocaleString().split(' '));
-    // console.log('tLDs', date.toLocaleDateString());
-    // console.log('tDs', date.toDateString());
-    // console.log('tIs', date.toISOString());
-    // console.log('tTs', date.toTimeString());
-    // console.log('ts', date.toString());
 
     this.postService.createPost(newPost);
 

@@ -1,5 +1,5 @@
 <button
-  class="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 cursor-pointer active:scale-95 transition-all duration-150"
+  class="px-4 font-bold py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 cursor-pointer active:scale-95 transition-all duration-150"
   (click)="openDialog()"
 >
   Edit Post
@@ -41,7 +41,11 @@
 
     <!-- Dialog Content -->
     <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-      <app-new-post></app-new-post>
+      <app-new-post
+        [isUpdate]="true"
+        [postToEdit]="postToEdit()"
+        (postSubmitted)="closeDialog()"
+      ></app-new-post>
     </div>
   </div>
 </div>

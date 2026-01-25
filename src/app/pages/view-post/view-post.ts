@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.type';
@@ -9,12 +9,7 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import {
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-  ɵInternalFormsSharedModule,
-} from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toast } from 'ngx-sonner';
 import { HlmToaster } from '@spartan-ng/helm/sonner';
 
@@ -30,7 +25,6 @@ import { EditPost } from '../../components/edit-post/edit-post';
     HlmInputImports,
     HlmButtonImports,
     RouterLink,
-    ɵInternalFormsSharedModule,
     ReactiveFormsModule,
     HlmToaster,
 
@@ -41,20 +35,17 @@ import { EditPost } from '../../components/edit-post/edit-post';
 })
 export class ViewPost implements OnInit {
   postService = inject(PostService);
-  post = signal<Post>({
-    id: '',
-    title: '',
-    author: {
-      name: '',
-      id: '',
-    },
-    date: new Date(),
-    topic: '',
-    content: '',
-    featured: false,
-    image: '',
-    comments: [], // Optional field for comments
+  postId = signal<string>('');
+
+  // Use computed to reactively get the post from the service
+  post = computed(() => {
+    const id = this.postId();
+    if (!id) return this.getDefaultPost();
+    return (
+      this.postService.posts().find((p) => p.id === id) || this.getDefaultPost()
+    );
   });
+
   comment = new FormControl('', {
     nonNullable: true,
     validators: [Validators.required, Validators.minLength(4)],
@@ -65,16 +56,27 @@ export class ViewPost implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const postId = params.get('id');
-      if (!postId) return;
-
-      const fetchedPost = this.postService.getOnePost(postId);
-      if (fetchedPost) {
-        this.post.set(fetchedPost);
-      } else {
-        console.log('Error Logged from line-40-view-post');
-        return;
+      if (postId) {
+        this.postId.set(postId);
       }
     });
+  }
+
+  private getDefaultPost(): Post {
+    return {
+      id: '',
+      title: '',
+      author: {
+        name: '',
+        id: '',
+      },
+      date: new Date(),
+      topic: '',
+      content: '',
+      featured: false,
+      image: '',
+      comments: [],
+    };
   }
 
   onSubmitComment() {
@@ -93,12 +95,14 @@ export class ViewPost implements OnInit {
       comment: this.comment.value as string,
     };
 
-    this.post.update((prevPost) => {
-      return {
-        ...prevPost,
-        comments: [userComment, ...(prevPost.comments ?? [])],
-      };
-    });
+    // Update the post in the service
+    const currentPost = this.post();
+    const updatedPost = {
+      ...currentPost,
+      comments: [userComment, ...(currentPost.comments ?? [])],
+    };
+
+    this.postService.updatePost(updatedPost);
     toast.success('Comment submitted successfully!');
     this.comment.setValue('');
   }
