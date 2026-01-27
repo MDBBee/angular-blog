@@ -23,14 +23,14 @@ export class PostService {
   topics = signal<string[]>([]);
   posts = signal<Post[]>([]);
   curPost = signal<Post | null>(null);
+  URL: string = 'http://localhost:3000/blogPosts';
 
   fetchMyPosts(userId: string) {
     return this.posts().filter((post) => post.author.id === userId);
   }
 
   getAllPosts() {
-    const url = 'http://localhost:3000/blogPosts';
-    return this.http.get<Post[]>(url).pipe(
+    return this.http.get<Post[]>(this.URL).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -39,8 +39,7 @@ export class PostService {
   }
 
   getOnePost(postId: string) {
-    const url = 'http://localhost:3000/blogPosts';
-    return this.http.get<Post>(url + `/${postId}`).pipe(
+    return this.http.get<Post>(this.URL + `/${postId}`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -61,7 +60,7 @@ export class PostService {
 
   updatePost(newPost: Post) {
     // console.log('UPDATE post', newPost);
-    const url = 'http://localhost:3000/blogPosts/' + newPost.id;
+    const url = this.URL + newPost.id;
 
     return this.http.put<Post>(url, newPost).pipe(
       tap({
