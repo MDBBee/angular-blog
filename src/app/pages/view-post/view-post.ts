@@ -14,6 +14,7 @@ import { toast } from 'ngx-sonner';
 import { HlmToaster } from '@spartan-ng/helm/sonner';
 
 import { EditPost } from '../../components/edit-post/edit-post';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-view-post',
@@ -27,7 +28,7 @@ import { EditPost } from '../../components/edit-post/edit-post';
     RouterLink,
     ReactiveFormsModule,
     HlmToaster,
-
+    DatePipe,
     EditPost,
   ],
   templateUrl: './view-post.html',
@@ -108,8 +109,16 @@ export class ViewPost implements OnInit {
       ...currentPost,
       comments: [userComment, ...(currentPost.comments ?? [])],
     };
+    // console.log('VIEW-P-112', updatedPost);
 
-    this.postService.updatePost(updatedPost);
+    this.postService.updatePost(updatedPost).subscribe({
+      next: (res) => this.postService.curPost.set(res),
+      error: (err) => {
+        console.log(err);
+        toast.error('Comment was not added !.. ');
+        return this.postService.curPost.set(this.getDefaultPost());
+      },
+    });
     toast.success('Comment submitted successfully!');
     this.comment.setValue('');
   }

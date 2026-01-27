@@ -7,7 +7,7 @@ import {
   User,
 } from '../models/post.type';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +40,12 @@ export class PostService {
 
   getOnePost(postId: string) {
     const url = 'http://localhost:3000/blogPosts';
-    return this.http.get<Post>(url + `/${postId}`);
+    return this.http.get<Post>(url + `/${postId}`).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      }),
+    );
   }
 
   createPost(post: CreatePost) {
@@ -56,13 +61,21 @@ export class PostService {
 
   updatePost(newPost: Post) {
     // console.log('UPDATE post', newPost);
+    const url = 'http://localhost:3000/blogPosts/' + newPost.id;
 
-    this.posts.update((prevPosts) =>
-      prevPosts.map((post) => {
-        if (post.id === newPost.id) {
-          return { ...post, ...newPost };
-        }
-        return post;
+    return this.http.put<Post>(url, newPost).pipe(
+      tap({
+        next: (updatedPost) => {
+          this.posts.update((prevPosts) =>
+            prevPosts.map((post) => {
+              return post.id === newPost.id ? updatedPost : post;
+            }),
+          );
+        },
+      }),
+      catchError((err) => {
+        console.log(err);
+        throw err;
       }),
     );
   }
