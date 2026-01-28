@@ -98,7 +98,7 @@ export class NewPost {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3)],
     }),
-    title: new FormControl(this.postToEdit().title, {
+    title: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3)],
     }),
@@ -131,6 +131,7 @@ export class NewPost {
 
       return;
     }
+
     // Run code if updating an existing post
     if (this.isUpdate()) {
       const post = {
@@ -138,16 +139,21 @@ export class NewPost {
         ...(this.postForm.getRawValue() as Post),
       };
 
-      this.postService.updatePost(post);
-
-      toast.success('Post Edited  Successfully!', {
-        duration: 4000,
-        action: {
-          label: 'View Post',
-          onClick: () => this.router.navigate([`/view-post/${post.id}`]),
+      this.postService.updatePost(post).subscribe({
+        next: () => {
+          toast.success('Post Updated  Successfully!', {
+            duration: 4000,
+            // action: {
+            //   label: 'View Post',
+            //   onClick: () => this.router.navigate([`/view-post/${post.id}`]),
+            // },
+          });
+          this.postSubmitted.emit();
         },
+        error: (err) => console.log(err),
       });
-      this.postSubmitted.emit();
+      // console.log('Clicked!!!!!!!!!!', this.isUpdate(), post);
+
       return;
     }
     // Run code if creating a new post

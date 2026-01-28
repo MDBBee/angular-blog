@@ -59,9 +59,9 @@ export class PostService {
   }
 
   updatePost(newPost: Post) {
-    // console.log('UPDATE post', newPost);
-    const url = this.URL + newPost.id;
+    const url = this.URL + '/' + newPost.id;
 
+    console.log('UPDATE post', url);
     return this.http.put<Post>(url, newPost).pipe(
       tap({
         next: (updatedPost) => {
@@ -70,6 +70,8 @@ export class PostService {
               return post.id === newPost.id ? updatedPost : post;
             }),
           );
+
+          this.curPost.set(updatedPost);
         },
       }),
       catchError((err) => {

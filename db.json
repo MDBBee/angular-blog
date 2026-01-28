@@ -2,7 +2,7 @@
   "blogPosts": [
     {
       "id": "1",
-      "title": "Traveling the World on a Budget",
+      "title": "Traveling the World on a Budget!!!",
       "author": {
         "name": "Emily Carter",
         "id": "jkds76",
@@ -279,31 +279,31 @@
   ],
   "topics": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Travel"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Technology"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Nutrition"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Fitness"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Lifestyle"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "General"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Politics"
     }
   ]
