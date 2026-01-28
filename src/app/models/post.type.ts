@@ -22,7 +22,7 @@ export type Post = {
   id: string;
   title: string;
   author: User;
-  date: Date;
+  date: string;
   topic: string;
   content: string;
   featured?: boolean;
@@ -33,3 +33,29 @@ export type Post = {
 export type CreatePost = Omit<Post, 'id' | 'author' | 'comments'>;
 // export type UpdatePost = Omit<Post, 'id' | 'author' | 'comments'>;
 export type UpdatePost = Omit<Post, 'id' | 'author'>;
+
+export interface DashboardMetrics {
+  totalUsers: number;
+  totalPosts: number;
+  totalComments: number;
+  activeUsers: number;
+  avgPostsPerUser: number;
+  engagementRate: number;
+}
+
+export interface UserStats {
+  name: string;
+  id: string;
+  postsCount: number;
+  commentsCount: number;
+  joinDate: string;
+  role: string;
+  status: 'active' | 'inactive';
+}
+
+export interface PostAnalytics {
+  topicCounts: { topic: string; count: number }[];
+  postsByDate: { date: string; count: number }[];
+  averageComments: number;
+  totalEngagement: number;
+}

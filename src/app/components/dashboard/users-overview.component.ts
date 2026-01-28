@@ -1,7 +1,8 @@
 import { Component, input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardService, UserStats } from '../../services/dashboard.service';
+import { DashboardService } from '../../services/dashboard.service';
 import { DashboardCardComponent } from './dashboard-card.component';
+import { UserStats } from '../../models/post.type';
 
 @Component({
   selector: 'app-users-overview',

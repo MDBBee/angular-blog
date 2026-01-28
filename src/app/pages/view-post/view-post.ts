@@ -78,7 +78,7 @@ export class ViewPost implements OnInit {
         role: 'User',
         access: 'Allowed',
       },
-      date: new Date(),
+      date: new Date().toLocaleDateString(),
       topic: '',
       content: '',
       featured: false,

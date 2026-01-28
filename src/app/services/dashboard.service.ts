@@ -2,32 +2,11 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-export interface DashboardMetrics {
-  totalUsers: number;
-  totalPosts: number;
-  totalComments: number;
-  activeUsers: number;
-  avgPostsPerUser: number;
-  engagementRate: number;
-}
-
-export interface UserStats {
-  name: string;
-  id: string;
-  postsCount: number;
-  commentsCount: number;
-  joinDate: string;
-  role: string;
-  status: 'active' | 'inactive';
-}
-
-export interface PostAnalytics {
-  topicCounts: { topic: string; count: number }[];
-  postsByDate: { date: string; count: number }[];
-  averageComments: number;
-  totalEngagement: number;
-}
+import {
+  DashboardMetrics,
+  PostAnalytics,
+  UserStats,
+} from '../models/post.type';
 
 @Injectable({
   providedIn: 'root',
@@ -72,7 +51,7 @@ export class DashboardService {
         const metrics: DashboardMetrics = {
           totalUsers: users.length,
           totalPosts: posts.length,
-          totalComments: totalComments,
+          totalComments,
           activeUsers: Math.ceil(users.length * 0.75),
           avgPostsPerUser:
             users.length > 0
@@ -198,7 +177,7 @@ export class DashboardService {
         const metrics: DashboardMetrics = {
           totalUsers: users.length,
           totalPosts: posts.length,
-          totalComments: totalComments,
+          totalComments,
           activeUsers: Math.ceil(users.length * 0.75),
           avgPostsPerUser:
             users.length > 0
@@ -225,7 +204,7 @@ export class DashboardService {
             commentsCount: comments,
             joinDate: '2025-01-01',
             role: user.role || 'User',
-            status: Math.random() > 0.3 ? 'active' : 'inactive',
+            status: userPosts.length || comments > 0 ? 'active' : 'inactive',
           };
         });
 

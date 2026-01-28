@@ -1,40 +1,32 @@
 import { Component, OnInit, inject, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
-import {
-  DashboardService,
-  DashboardMetrics,
-  UserStats,
-  PostAnalytics,
-} from '../../services/dashboard.service';
+import { DashboardService } from '../../services/dashboard.service';
 import { StatCardComponent } from '../../components/dashboard/stat-card.component';
 import { DashboardCardComponent } from '../../components/dashboard/dashboard-card.component';
 import { PieChartComponent } from '../../components/dashboard/pie-chart.component';
 import { BarChartComponent } from '../../components/dashboard/bar-chart.component';
 import { LineChartComponent } from '../../components/dashboard/line-chart.component';
-import { DoughnutChartComponent } from '../../components/dashboard/doughnut-chart.component';
-import { RadarChartComponent } from '../../components/dashboard/radar-chart.component';
+
 import { UsersOverviewComponent } from '../../components/dashboard/users-overview.component';
+
 import {
-  AdvancedMetricsComponent,
-  Metric,
-} from '../../components/dashboard/advanced-metrics.component';
+  DashboardMetrics,
+  PostAnalytics,
+  UserStats,
+} from '../../models/post.type';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
   imports: [
     CommonModule,
-    BaseChartDirective,
     StatCardComponent,
     DashboardCardComponent,
     PieChartComponent,
     BarChartComponent,
     LineChartComponent,
-    DoughnutChartComponent,
-    RadarChartComponent,
     UsersOverviewComponent,
-    AdvancedMetricsComponent,
   ],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css',
@@ -57,51 +49,6 @@ export class AdminDashboardComponent implements OnInit {
   deviceDoughnutChartData = signal<any>(null);
   performanceRadarChartData = signal<any>(null);
 
-  // Advanced metrics
-  systemMetrics = signal<Metric[]>([
-    {
-      label: 'API Response Time',
-      value: 245,
-      unit: 'ms',
-      trend: -12,
-      status: 'up',
-    },
-    { label: 'Server Load', value: 45, unit: '%', trend: 5, status: 'down' },
-    {
-      label: 'Database Queries/s',
-      value: 1250,
-      unit: '',
-      trend: 18,
-      status: 'up',
-    },
-    {
-      label: 'Active Connections',
-      value: 342,
-      unit: '',
-      trend: 8,
-      status: 'up',
-    },
-  ]);
-
-  contentMetrics = signal<Metric[]>([
-    {
-      label: 'Avg. Reading Time',
-      value: 4.5,
-      unit: ' min',
-      trend: 3,
-      status: 'up',
-    },
-    { label: 'Bounce Rate', value: 32, unit: '%', trend: -8, status: 'up' },
-    { label: 'Share Rate', value: 12, unit: '%', trend: 15, status: 'up' },
-    {
-      label: 'Avg. Post Length',
-      value: 1240,
-      unit: ' words',
-      trend: -5,
-      status: 'down',
-    },
-  ]);
-
   constructor() {
     // Effect to update chart data when analytics change
     effect(() => {
@@ -110,6 +57,8 @@ export class AdminDashboardComponent implements OnInit {
         this.updateCharts();
       }
     });
+
+    console.log('PostAnalytics', this.postAnalytics());
   }
 
   ngOnInit() {

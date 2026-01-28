@@ -74,7 +74,7 @@ export class NewPost {
     id: '',
     title: '',
     author: { name: '', id: '', role: 'User', access: 'Allowed' },
-    date: new Date(),
+    date: new Date().toLocaleDateString(),
     topic: '',
     content: '',
     featured: false,
@@ -153,7 +153,7 @@ export class NewPost {
       return;
     }
     // Run code if creating a new post
-    const date = new Date();
+    const date = new Date().toLocaleDateString();
     const newPost = {
       ...this.formValue,
       date,
@@ -162,7 +162,7 @@ export class NewPost {
     this.postService.createPost(newPost).subscribe({
       next: (post) => {
         toast.success('Post Created  Successfully!', {
-          description: `Published on ${date.toDateString()}`,
+          description: `Published on ${date}`,
           duration: 4000,
           action: {
             label: 'View Post',
