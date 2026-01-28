@@ -112,7 +112,7 @@ export class NewPost {
 
   get formValue() {
     const { author, ...formData } = this.postForm.value;
-    return formData as CreatePost;
+    return formData;
   }
 
   onSubmitPost() {
@@ -136,17 +136,13 @@ export class NewPost {
     if (this.isUpdate()) {
       const post = {
         ...this.postToEdit(),
-        ...(this.postForm.getRawValue() as Post),
-      };
+        ...this.postForm.getRawValue(),
+      } as Post;
 
       this.postService.updatePost(post).subscribe({
         next: () => {
           toast.success('Post Updated  Successfully!', {
             duration: 4000,
-            // action: {
-            //   label: 'View Post',
-            //   onClick: () => this.router.navigate([`/view-post/${post.id}`]),
-            // },
           });
           this.postSubmitted.emit();
         },
@@ -161,17 +157,20 @@ export class NewPost {
     const newPost = {
       ...this.formValue,
       date,
-    };
+    } as Post;
 
-    this.postService.createPost(newPost);
-
-    toast.success('Post Created  Successfully!', {
-      description: `Published on ${date.toDateString()}`,
-      duration: 4000,
-      action: {
-        label: 'View Post',
-        onClick: () => this.router.navigate(['/']),
+    this.postService.createPost(newPost).subscribe({
+      next: (post) => {
+        toast.success('Post Created  Successfully!', {
+          description: `Published on ${date.toDateString()}`,
+          duration: 4000,
+          action: {
+            label: 'View Post',
+            onClick: () => this.router.navigate(['/']),
+          },
+        });
       },
+      error: (err) => console.log(err),
     });
   }
 

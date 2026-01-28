@@ -16,6 +16,7 @@ export type User = {
   role: Role;
   access: AccessStatus;
 };
+export type Topic = { id: string; name: string };
 
 export type Post = {
   id: string;
@@ -30,4 +31,5 @@ export type Post = {
 };
 
 export type CreatePost = Omit<Post, 'id' | 'author' | 'comments'>;
-export type UpdatePost = Omit<Post, 'id' | 'author' | 'comments'>;
+// export type UpdatePost = Omit<Post, 'id' | 'author' | 'comments'>;
+export type UpdatePost = Omit<Post, 'id' | 'author'>;

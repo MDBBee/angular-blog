@@ -238,6 +238,37 @@
           "comment": "Well explained and respectful."
         }
       ]
+    },
+    {
+      "id": "1769595786306",
+      "topic": {
+        "id": "1",
+        "name": "Travel"
+      },
+      "title": "The great pyramid of Giza",
+      "content": "The Great Pyramid of Giza is one of the most remarkable achievements of the ancient world and remains a powerful symbol of human ingenuity, ambition, and mystery. Built more than 4,500 years ago during Egypt’s Fourth Dynasty, the pyramid was constructed as a royal tomb for Pharaoh Khufu, also known as Cheops. Located on the Giza Plateau near modern-day Cairo, it is the largest of the three pyramids at Giza and the only surviving structure of the original Seven Wonders of the Ancient World.\n\nOriginally standing at approximately 146.6 meters (481 feet) tall, the Great Pyramid was the tallest man-made structure in the world for over 3,800 years. Today, it stands slightly shorter due to the loss of its outer casing stones. These casing stones were made of highly polished white limestone, which once reflected sunlight and caused the pyramid to shine brilliantly, earning it the nickname “Ikhet,” meaning “Glorious Light.” The core of the pyramid is made of millions of limestone blocks, some weighing several tons, fitted together with astonishing precision.\n\nOne of the greatest mysteries surrounding the Great Pyramid is how it was built. Ancient Egyptian builders lacked modern machinery, yet they managed to quarry, transport, and assemble an estimated 2.3 million stone blocks. Scholars believe a combination of ramps, levers, sledges, and human labor was used, involving tens of thousands of skilled workers rather than slaves, as once commonly thought. Recent archaeological evidence suggests that these workers were well fed and organized, pointing to a highly advanced and efficient society.\n\nThe internal structure of the Great Pyramid is equally impressive. It contains the King’s Chamber, built from massive granite blocks, the Queen’s Chamber, and a network of corridors and shafts whose exact purposes are still debated. The alignment of the pyramid is remarkably accurate, with its sides oriented almost perfectly to the cardinal directions. This precision reflects the ancient Egyptians’ advanced understanding of mathematics, astronomy, and engineering.\n\nBeyond its physical grandeur, the Great Pyramid held deep religious and symbolic meaning. It was designed to help the pharaoh’s soul ascend to the heavens and join the gods in the afterlife. Today, the Great Pyramid of Giza continues to inspire awe and curiosity, standing as a timeless testament to ancient Egypt’s cultural, scientific, and spiritual achievements.\n",
+      "image": "https://images.unsplash.com/photo-1623674587543-9c7564de99d1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Z3JlYXQlMjBweXJhbWlkfGVufDB8fDB8fHww",
+      "featured": false,
+      "date": "2026-01-28T10:23:06.306Z",
+      "author": {
+        "name": "Maria Rodrigueze",
+        "id": "8921bnbnds",
+        "role": "User",
+        "access": "Allowed"
+      },
+      "comments": [
+        {
+          "id": 1769596356292,
+          "user": {
+            "name": "Maria Rodrigueze",
+            "id": "8921bnbnds",
+            "role": "User",
+            "access": "Allowed"
+          },
+          "date": "2026-01-28T10:32:36.292Z",
+          "comment": "Guys, you can critique my submission anytime, no offence taken!!"
+        }
+      ]
     }
   ],
   "users": [

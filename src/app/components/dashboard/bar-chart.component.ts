@@ -63,7 +63,7 @@ export class BarChartComponent {
       legend: {
         display: true,
         labels: {
-          color: 'rgba(255, 255, 255, 0.8)',
+          color: 'oklch(0.704 0.04 256.788)',
           font: {
             size: 12,
             weight: 500,
@@ -79,7 +79,7 @@ export class BarChartComponent {
           color: 'rgba(255, 255, 255, 0.1)',
         },
         ticks: {
-          color: 'rgba(255, 255, 255, 0.7)',
+          color: 'oklch(0.704 0.04 256.788)',
         },
       },
       x: {
@@ -87,7 +87,7 @@ export class BarChartComponent {
           display: false,
         },
         ticks: {
-          color: 'rgba(255, 255, 255, 0.7)',
+          color: 'oklch(0.704 0.04 256.788)',
         },
       },
     },

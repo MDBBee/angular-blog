@@ -34,7 +34,7 @@
                   @for (topic of topics(); track topic) {
 
                   <hlm-option [value]="topic">
-                    {{topic | titlecase}}
+                    {{topic.name| titlecase}}
                   </hlm-option>
                   }
                 </hlm-select-content>

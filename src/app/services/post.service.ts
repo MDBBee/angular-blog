@@ -4,6 +4,7 @@ import {
   CreatePost,
   Post,
   Role,
+  Topic,
   User,
 } from '../models/post.type';
 import { HttpClient } from '@angular/common/http';
@@ -26,18 +27,29 @@ const userAdmin = {
 })
 export class PostService {
   http = inject(HttpClient);
-  user = signal<User>(userAdmin as User);
-  topics = signal<string[]>([]);
+  user = signal<User>(userTest as User);
+  topics = signal<Topic[]>([]);
   posts = signal<Post[]>([]);
   curPost = signal<Post | null>(null);
-  URL: string = 'http://localhost:3000/blogPosts';
+  URLPOSTS: string = 'http://localhost:3000/blogPosts';
+  URLUSERS: string = 'http://localhost:3000/users';
+  URLTOPICS: string = 'http://localhost:3000/topics';
 
   fetchMyPosts(userId: string) {
     return this.posts().filter((post) => post.author.id === userId);
   }
 
   getAllPosts() {
-    return this.http.get<Post[]>(this.URL).pipe(
+    return this.http.get<Post[]>(this.URLPOSTS).pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      }),
+    );
+  }
+
+  getAllTopics() {
+    return this.http.get<Topic[]>(this.URLTOPICS).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -46,7 +58,7 @@ export class PostService {
   }
 
   getOnePost(postId: string) {
-    return this.http.get<Post>(this.URL + `/${postId}`).pipe(
+    return this.http.get<Post>(this.URLPOSTS + `/${postId}`).pipe(
       catchError((err) => {
         console.log(err);
         throw err;
@@ -59,15 +71,22 @@ export class PostService {
 
     const date = new Date();
     const id = date.getTime().toString();
-
     const newPost = { ...post, author, id };
-    this.posts.update((prevPosts) => [newPost, ...prevPosts]);
-    return;
+
+    return this.http.post<Post>(this.URLPOSTS, newPost).pipe(
+      tap({
+        next: (addedPost) =>
+          this.posts.update((prevPosts) => [addedPost, ...prevPosts]),
+      }),
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      }),
+    );
   }
 
   updatePost(newPost: Post) {
-    const url = this.URL + '/' + newPost.id;
-    console.log(newPost);
+    const url = this.URLPOSTS + '/' + newPost.id;
 
     return this.http.put<Post>(url, newPost).pipe(
       tap({
@@ -91,8 +110,18 @@ export class PostService {
   deletePost(postId: string) {
     // console.log('UPDATE post', newPost);
 
-    this.posts.update((prevPosts) =>
-      prevPosts.filter((post) => post.id !== postId),
+    return this.http.delete(this.URLPOSTS + '/' + postId).pipe(
+      tap({
+        next: () => {
+          this.posts.update((prevP) => prevP.filter((p) => p.id !== postId));
+
+          if (this.curPost()?.id === postId) this.curPost.set(null);
+        },
+      }),
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      }),
     );
   }
 }

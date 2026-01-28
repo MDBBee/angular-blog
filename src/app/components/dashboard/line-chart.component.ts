@@ -37,6 +37,7 @@ export class LineChartComponent {
         borderColor: 'rgb(59, 130, 246)',
         backgroundColor: 'rgba(59, 130, 246, 0.1)',
         borderWidth: 3,
+
         fill: true,
         tension: 0.4,
         pointRadius: 5,
@@ -54,7 +55,7 @@ export class LineChartComponent {
       legend: {
         display: true,
         labels: {
-          color: 'rgba(255, 255, 255, 0.8)',
+          color: 'oklch(0.704 0.04 256.788)',
           font: {
             size: 12,
             weight: 500,
@@ -70,7 +71,7 @@ export class LineChartComponent {
           color: 'rgba(255, 255, 255, 0.1)',
         },
         ticks: {
-          color: 'rgba(255, 255, 255, 0.7)',
+          color: 'oklch(0.704 0.04 256.788)',
         },
       },
       x: {
@@ -78,7 +79,7 @@ export class LineChartComponent {
           display: false,
         },
         ticks: {
-          color: 'rgba(255, 255, 255, 0.7)',
+          color: 'oklch(0.704 0.04 256.788)',
         },
       },
     },

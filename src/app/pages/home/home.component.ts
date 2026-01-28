@@ -23,5 +23,9 @@ export class HomeComponent implements OnInit {
     this.postService.getAllPosts().subscribe((res) => {
       this.postService.posts.set(res);
     });
+
+    this.postService.getAllTopics().subscribe((res) => {
+      this.postService.topics.set(res);
+    });
   }
 }

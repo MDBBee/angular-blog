@@ -5,12 +5,10 @@ import { PostService } from '../../services/post.service';
 import { Comment, Post } from '../../models/post.type';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideXSquare } from '@ng-icons/lucide';
-import { HlmToaster } from '@spartan-ng/helm/sonner';
-import { HlmField } from '@spartan-ng/helm/field';
 
 @Component({
   selector: 'app-edit-post',
-  imports: [CommonModule, NewPost, NgIcon, HlmToaster, HlmField],
+  imports: [CommonModule, NewPost, NgIcon],
   templateUrl: './edit-post.html',
   styleUrl: './edit-post.css',
   providers: [provideIcons({ lucideXSquare })],

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
 import { HPostComponent } from '../../components/h-post/h-post.component';
 
@@ -8,12 +8,17 @@ import { HPostComponent } from '../../components/h-post/h-post.component';
   templateUrl: './my-posts.component.html',
   styleUrl: './my-posts.component.css',
 })
-export class MyPostsComponent {
+export class MyPostsComponent implements OnInit {
   postService = inject(PostService);
   myPosts = computed(() => {
     const posts = this.postService.fetchMyPosts(this.postService.user().id);
-    // console.log(posts);
-
     return posts;
   });
+
+  ngOnInit(): void {
+    this.postService.getAllPosts().subscribe((res) => {
+      if (this.postService.posts().length === 0)
+        this.postService.posts.set(res);
+    });
+  }
 }

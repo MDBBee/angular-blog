@@ -126,11 +126,14 @@ export class ViewPost implements OnInit {
   onDeletePost(postId: string) {
     if (!postId) return;
 
-    this.postService.deletePost(postId);
-
-    this.router.navigate(['/']);
-    toast.success('Post Edited  Successfully!', {
-      duration: 4000,
+    this.postService.deletePost(postId).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+        toast.success('Post Edited  Successfully!', {
+          duration: 4000,
+        });
+      },
+      error: (err) => console.error(err),
     });
   }
 }

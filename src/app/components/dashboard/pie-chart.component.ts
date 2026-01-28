@@ -8,13 +8,13 @@ import { BaseChartDirective } from 'ng2-charts';
   standalone: true,
   imports: [CommonModule, BaseChartDirective],
   template: `
-    <div class="w-full h-full flex items-center justify-center">
+    <div class="w-full h-full flex items-center  justify-center">
       <canvas
         baseChart
         [type]="'pie'"
         [data]="chartData()"
         [options]="chartOptions()"
-        class="max-w-full"
+        class="max-w-full "
       ></canvas>
     </div>
   `,
@@ -56,7 +56,7 @@ export class PieChartComponent {
       legend: {
         position: 'bottom',
         labels: {
-          color: 'rgba(255, 255, 255, 0.8)',
+          color: 'oklch(0.704 0.04 256.788)',
           font: {
             size: 12,
             weight: 500,
