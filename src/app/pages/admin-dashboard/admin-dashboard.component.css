@@ -1,0 +1,348 @@
+/* CSS Variables for Modern Design */
+:host {
+  --color-primary: rgb(59, 130, 246);
+  --color-primary-dark: rgb(37, 99, 235);
+  --color-secondary: rgb(139, 92, 246);
+  --color-secondary-dark: rgb(124, 58, 255);
+  --color-accent: rgb(236, 72, 153);
+  --color-accent-dark: rgb(219, 39, 119);
+  --color-success: rgb(34, 197, 94);
+  --color-warning: rgb(251, 146, 60);
+  --color-danger: rgb(248, 113, 113);
+  --color-info: rgb(14, 165, 233);
+
+  --bg-primary: rgb(15, 23, 42);
+  --bg-secondary: rgb(30, 41, 59);
+  --bg-tertiary: rgb(51, 65, 85);
+  --bg-hover: rgba(148, 163, 184, 0.1);
+  --bg-card: rgba(51, 65, 85, 0.5);
+
+  --text-primary: rgb(241, 245, 249);
+  --text-secondary: rgba(203, 213, 225, 0.8);
+  --text-tertiary: rgb(148, 163, 184);
+
+  --border-color: rgba(203, 213, 225, 0.1);
+  --border-color-hover: rgba(203, 213, 225, 0.2);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* Base Styles */
+.admin-dashboard {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated background gradient */
+.admin-dashboard::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(139, 92, 246, 0.05) 50%,
+    rgba(236, 72, 153, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Typography */
+h1 {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+p {
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-20px) translateX(-10px);
+  }
+}
+
+/* Dashboard Cards */
+::ng-deep app-dashboard-card .dashboard-card {
+  position: relative;
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+}
+
+::ng-deep app-dashboard-card .dashboard-card:hover {
+  border-color: var(--border-color-hover);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+::ng-deep app-dashboard-card .dashboard-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Button Styles */
+button {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+button:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Progress Bars */
+.progress-bar-container {
+  position: relative;
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+  }
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Status Indicator */
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-indicator.active {
+  background-color: var(--color-success);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+.status-indicator.inactive {
+  background-color: var(--color-danger);
+  box-shadow: 0 0 10px rgba(248, 113, 113, 0.5);
+}
+
+/* Chart Container Styles */
+::ng-deep canvas {
+  max-width: 100%;
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hover-lift {
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+  transition: background var(--transition-base);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Loading Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Grid Gap Consistency */
+.grid {
+  row-gap: 1.5rem;
+  column-gap: 1.5rem;
+}
+
+/* Border and Shadow Utilities */
+.border-glow {
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(var(--bg-card), var(--bg-card)),
+    linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Focus States */
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
