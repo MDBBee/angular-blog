@@ -13,7 +13,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { toast } from 'ngx-sonner';
 import { HlmToaster } from '@spartan-ng/helm/sonner';
 
-import { EditPost } from '../../components/edit-post/edit-post';
+import { EditPost } from '../../components/edit-resource/edit-post';
 import { DatePipe } from '@angular/common';
 
 @Component({

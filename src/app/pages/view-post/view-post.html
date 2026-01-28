@@ -35,7 +35,7 @@
       >
         Delete Post
       </button>
-      <app-edit-post [postToEdit]="post()"></app-edit-post>
+      <app-edit-post location="view-post" [postToEdit]="post()"></app-edit-post>
     </div>
     }
   </div>
@@ -48,8 +48,14 @@
         <p class="max-w-[80%]">{{comment.comment}}</p>
         <div class="flex gap-2 text-muted-foreground text-xs">
           <p class="border-r-2 pr-2">{{comment.user.name}}</p>
-
-          <span> {{comment.date | date}} </span>
+          <div class="flex gap-2">
+            <app-edit-post
+              location="comment"
+              [commentToEdit]="comment"
+              [postToEdit]="post()"
+            ></app-edit-post>
+            <span> {{comment.date | date}} </span>
+          </div>
         </div>
       </li>
       }
